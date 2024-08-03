@@ -21,7 +21,12 @@ class LinkedList
     @tail = nil
   end
 
-  def append(node)
+  def new_node(value)
+    Node.new(value)
+  end
+
+  def append(value)
+    node = new_node(value)
     if @head.nil?
       @head = node
     elsif @tail.nil?
@@ -33,7 +38,8 @@ class LinkedList
     end
   end
 
-  def prepend(node)
+  def prepend(value)
+    node = new_node(value)
     if @head.nil?
       @head = node
     elsif @tail.nil?
@@ -87,17 +93,10 @@ class LinkedList
   end
 
   def to_s
-    string = "#{@head.value}"
+    string = "( #{@head.value} )"
     1.upto((self.size) - 1) do |i|
-      string << " -> #{self.at(i).value}"
+      string << " -> ( #{self.at(i).value} )"
     end
-    string
+    string << ' -> nil'
   end
 end
-a = Node.new("A")
-b = Node.new("B")
-c = Node.new("C")
-d = Node.new('D')
-e = Node.new('E')
-binding.pry
-list = LinkedList.new
